@@ -40,8 +40,12 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     backGroup3: cc.Node = [];
 
-    // LIFE-CYCLE CALLBACKS:
+    // @ts-ignore
+    @property(cc.Node)
+    bgFloor: cc.Node = [];
 
+    // LIFE-CYCLE CALLBACKS:
+    jumpNum: number = 0;  // 用来做二段跳
 
     onLoad() {
         this.animationHero.play('Run');
@@ -56,7 +60,9 @@ export default class NewClass extends cc.Component {
         this.backGroup2[0].setPosition(v2(0, 0));
         this.backGroup2[1].setPosition(v2(1000, 0));
         this.backGroup3[0].setPosition(v2(0, -91.4));
-        this.backGroup3[1].setPosition(v2(499 ,-91.4));
+        this.backGroup3[1].setPosition(v2(499, -91.4));
+        this.bgFloor[0].setPosition(v2(48, 0));
+        this.bgFloor[1].setPosition(v2(643, 0));
 
 
     }
@@ -68,26 +74,35 @@ export default class NewClass extends cc.Component {
         this.bg2Move(this.backGroup2[1]);
         this.bg3Move(this.backGroup3[0]);
         this.bg3Move(this.backGroup3[1]);
+        this.floolMove(this.bgFloor[0]);
+        this.floolMove(this.bgFloor[1]);
     }
 
     bg1Move(bg: cc.Node) {
         bg.x -= backGroundSpeed1;  //移动速度
-        if(bg.x< -bg.width+1){
-            bg.x += bg.width*2-2;  //调整出现黑边的问题
+        if (bg.x < -bg.width + 1) {
+            bg.x += bg.width * 2 - 2;  //调整出现黑边的问题
         }
     }
 
     bg2Move(bg: cc.Node) {
         bg.x -= backGroundSpeed2;
-        if(bg.x< -bg.width){
-            bg.x += bg.width*2;
+        if (bg.x < -bg.width) {
+            bg.x += bg.width * 2;
         }
     }
 
     bg3Move(bg: cc.Node) {
         bg.x -= backGroundSpeed3;
-        if(bg.x< -bg.width){
-            bg.x += bg.width*2-2;
+        if (bg.x < -bg.width) {
+            bg.x += bg.width * 2-2;
+        }
+    }
+
+    floolMove(bg: cc.Node) {
+        bg.x -= floorSpeed4;
+        if (bg.x < -bg.width) {
+            bg.x += bg.width * 2;
         }
     }
     callBackFunc() {
@@ -125,7 +140,7 @@ export default class NewClass extends cc.Component {
             let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
             let seq = cc.sequence(actionTo, callBack);
             this.animationHero.node.runAction(seq);
-            this.animationHero.play(data);
+            this.animationHero.play('Jump');
         }
 
 
