@@ -19,18 +19,39 @@ export default class NewClass extends cc.Component {
     @property
     text: string = 'hello';
 
-    @property(cc.Button)
-    btnSwitch: cc.Button = null;
+    // @ts-ignore
+    @property(cc.Node)
+    btnRightNode: cc.Node = [];
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
 
-    start () {
+    start() {
+    }
 
+    onInRange() {
+        for (let i = 0; i < this.btnRightNode.length; i++) {
+            cc.log('now' + this.btnRightNode[i]);
+            let mTo = cc.moveTo(0.3,0,this.btnRightNode[i].y);
+            let dely = cc.delayTime(0.5*i);
+            let sqe = cc.sequence(dely,mTo);
+            this.btnRightNode[i].runAction(sqe);
+        }
+    }
+
+    onOutRange() {
+
+        for (let i = 0; i < this.btnRightNode.length; i++) {
+            cc.log('now' + this.btnRightNode[i]);
+            let mTo = cc.moveTo(0.3,163,this.btnRightNode[i].y);
+            let dely = cc.delayTime(0.5*i);
+            let sqe = cc.sequence(dely,mTo);
+            this.btnRightNode[i].runAction(sqe);
+        }
     }
 
     // update (dt) {}
-    onSwitchScene(){
+    onSwitchScene() {  //切换场景
         cc.director.loadScene("GameScene");
     }
 }
