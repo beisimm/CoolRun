@@ -28,20 +28,20 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     btnRoll: cc.Node = null;
 
-    // @ts-ignore
     @property(cc.Node)
+    // @ts-ignore
     backGroup1: cc.Node = [];
 
-    // @ts-ignore
     @property(cc.Node)
+    // @ts-ignore
     backGroup2: cc.Node = [];
 
-    // @ts-ignore
     @property(cc.Node)
+    // @ts-ignore
     backGroup3: cc.Node = [];
 
-    // @ts-ignore
     @property(cc.Node)
+    // @ts-ignore
     bgFloor: cc.Node = [];
 
     // LIFE-CYCLE CALLBACKS:
@@ -79,6 +79,7 @@ export default class NewClass extends cc.Component {
     }
 
     bg1Move(bg: cc.Node) {
+        // @ts-ignore
         bg.x -= backGroundSpeed1;  //移动速度
         if (bg.x < -bg.width + 1) {
             bg.x += bg.width * 2 - 2;  //调整出现黑边的问题
@@ -86,6 +87,7 @@ export default class NewClass extends cc.Component {
     }
 
     bg2Move(bg: cc.Node) {
+        // @ts-ignore
         bg.x -= backGroundSpeed2;
         if (bg.x < -bg.width) {
             bg.x += bg.width * 2;
@@ -93,6 +95,7 @@ export default class NewClass extends cc.Component {
     }
 
     bg3Move(bg: cc.Node) {
+        // @ts-ignore
         bg.x -= backGroundSpeed3;
         if (bg.x < -bg.width) {
             bg.x += bg.width * 2-2;
@@ -100,6 +103,7 @@ export default class NewClass extends cc.Component {
     }
 
     floolMove(bg: cc.Node) {
+        // @ts-ignore
         bg.x -= floorSpeed4;
         if (bg.x < -bg.width) {
             bg.x += bg.width * 2;
