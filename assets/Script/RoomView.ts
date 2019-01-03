@@ -30,6 +30,12 @@ export default class NewClass extends cc.Component {
     btnLeftNode: cc.Node = []
 
     @property(cc.Node)
+    MainView: cc.Node = null
+
+    @property(cc.Node)
+    PlayView: cc.Node = null
+
+    @property(cc.Node)
         // @ts-ignore
     btnLeftNodeBack: cc.Node = []
 
@@ -39,7 +45,9 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        for(let i = 0; i<this.btnLeftNode.length;i++){  //通过点击让下方变颜色
+        this.onShowMainView()
+        // @ts-ignore
+        for (let i = 0; i < this.btnLeftNode.length; i++) {  //通过点击让下方呈现按压颜色
             this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_START, this.onTouchActive, this.btnLeftNodeBack[i]);
             this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_END, this.onTouchHide, this.btnLeftNodeBack[i]);
             this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchHide, this.btnLeftNodeBack[i]);
@@ -48,9 +56,10 @@ export default class NewClass extends cc.Component {
     }
 
     start() {
-        // this.btnLeftNodeBack[0].active = false
 
     }
+    // update (dt) {}
+
 
     onInRange() {
         // @ts-ignore
@@ -63,10 +72,15 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    onTouchActive() {   
+    onTouchActive() {
+
+        // @ts-ignore
         this.active = true
     }
-    onTouchHide(){
+
+    onTouchHide() {
+
+        // @ts-ignore
         this.active = false
 
     }
@@ -82,8 +96,18 @@ export default class NewClass extends cc.Component {
             this.btnRightNode[i].runAction(sqe)
         }
     }
+    onShowMainView(){
+        this.MainView.active = true
+        this.PlayView.active = false
 
-    // update (dt) {}
+    }
+
+
+    onShowPlayerView(){
+        this.MainView.active = false
+        this.PlayView.active = true
+    }
+
     onGameStart() {  //切换场景
         this.onOutRange()
         setTimeout(function () {  //实现动画效果结束之后再切换场景
