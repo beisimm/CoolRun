@@ -4,6 +4,32 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>GameUI1_02.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,205},{324,103}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{324,103}}</string>
+                <key>sourceSize</key>
+                <string>{324,103}</string>
+            </dict>
+            <key>GameUI1_19.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{328,215},{210,106}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{210,106}}</string>
+                <key>sourceSize</key>
+                <string>{210,106}</string>
+            </dict>
             <key>GameUI_01.png</key>
             <dict>
                 <key>frame</key>
@@ -33,7 +59,7 @@
             <key>GameUI_03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,205},{316,118}}</string>
+                <string>{{2,310},{316,118}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +72,7 @@
             <key>GameUI_04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{320,215},{114,316}}</string>
+                <string>{{320,427},{114,316}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,11 +98,11 @@
             <key>GameUI_06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,453},{200,126}}</string>
+                <string>{{130,783},{200,126}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{200,126}}</string>
                 <key>sourceSize</key>
@@ -85,11 +111,11 @@
             <key>GameUI_07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,466},{114,139}}</string>
+                <string>{{258,861},{114,139}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{114,139}}</string>
                 <key>sourceSize</key>
@@ -137,11 +163,11 @@
             <key>GameUI_11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,325},{200,126}}</string>
+                <string>{{2,783},{200,126}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{200,126}}</string>
                 <key>sourceSize</key>
@@ -150,11 +176,11 @@
             <key>GameUI_12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{204,325},{114,139}}</string>
+                <string>{{258,745},{114,139}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{114,139}}</string>
                 <key>sourceSize</key>
@@ -163,7 +189,7 @@
             <key>GameUI_13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{320,533},{111,111}}</string>
+                <string>{{399,783},{111,111}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +254,7 @@
             <key>GameUI_18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{430,652},{42,43}}</string>
+                <string>{{258,474},{42,43}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +267,7 @@
             <key>GameUI_20.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{312,646},{116,116}}</string>
+                <string>{{2,627},{116,116}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +280,7 @@
             <key>GameUI_21.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{433,562},{49,88}}</string>
+                <string>{{436,562},{49,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -267,7 +293,7 @@
             <key>GameUI_23.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{183,607},{127,107}}</string>
+                <string>{{174,518},{127,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,7 +306,7 @@
             <key>GameUI_24.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{132,581},{49,87}}</string>
+                <string>{{436,652},{49,87}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,7 +319,7 @@
             <key>GameUI_25.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,581},{107,128}}</string>
+                <string>{{44,430},{107,128}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,11 +358,11 @@
             <key>GameUI_29.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,690},{125,102}}</string>
+                <string>{{399,896},{125,102}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{125,102}}</string>
                 <key>sourceSize</key>
@@ -345,7 +371,7 @@
             <key>GameUI_30.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{132,670},{44,40}}</string>
+                <string>{{436,741},{44,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,7 +384,7 @@
             <key>GameUI_31.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,716},{87,86}}</string>
+                <string>{{2,539},{87,86}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +397,7 @@
             <key>GameUI_32.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{129,712},{43,42}}</string>
+                <string>{{258,430},{43,42}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,11 +410,11 @@
             <key>GameUI_33.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{475,694},{40,27}}</string>
+                <string>{{2,745},{40,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{40,27}}</string>
                 <key>sourceSize</key>
@@ -397,7 +423,7 @@
             <key>GameUI_34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{475,652},{40,27}}</string>
+                <string>{{482,741},{40,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -417,7 +443,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:67a625682b4669191c306d4baa101326$</string>
+            <string>$TexturePacker:SmartUpdate:79ebc5d9e362ce8b647840de2e831b68$</string>
             <key>textureFileName</key>
             <string>GameUI.png</string>
         </dict>
