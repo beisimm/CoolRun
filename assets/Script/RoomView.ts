@@ -33,6 +33,13 @@ export default class NewClass extends cc.Component {
     MainView: cc.Node = null
 
     @property(cc.Node)
+    PlayerViewContent: cc.Node = null
+
+    @property(cc.Prefab)
+    Prefa: cc.Prefab = null
+
+
+    @property(cc.Node)
     PlayView: cc.Node = null
 
     @property(cc.Node)
@@ -46,6 +53,10 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         this.onShowMainView()
+        for (let i = 0; i < 10; i++) {
+            let newprefa = cc.instantiate(this.Prefa)
+            this.PlayerViewContent.addChild(newprefa)
+        }
         // @ts-ignore
         for (let i = 0; i < this.btnLeftNode.length; i++) {  //通过点击让下方呈现按压颜色
             this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_START, this.onTouchActive, this.btnLeftNodeBack[i]);
@@ -58,6 +69,7 @@ export default class NewClass extends cc.Component {
     start() {
 
     }
+
     // update (dt) {}
 
 
@@ -96,14 +108,15 @@ export default class NewClass extends cc.Component {
             this.btnRightNode[i].runAction(sqe)
         }
     }
-    onShowMainView(){
+
+    onShowMainView() {
         this.MainView.active = true
         this.PlayView.active = false
 
     }
 
 
-    onShowPlayerView(){
+    onShowPlayerView() {
         this.MainView.active = false
         this.PlayView.active = true
     }
