@@ -23,7 +23,15 @@ export default class NewClass extends cc.Component {
 
     @property(cc.Node)
         // @ts-ignore
-    btnRightNode: cc.Node = []  
+    btnRightNode: cc.Node = []
+
+    @property(cc.Node)
+        // @ts-ignore
+    btnLeftNode: cc.Node = []
+
+    @property(cc.Node)
+        // @ts-ignore
+    btnLeftNodeBack: cc.Node = []
 
     @property(cc.Button)
     btnStartGame: cc.Button = null;
@@ -31,10 +39,17 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        for(let i = 0; i<this.btnLeftNode.length;i++){  //通过点击让下方变颜色
+            this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_START, this.onTouchActive, this.btnLeftNodeBack[i]);
+            this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_END, this.onTouchHide, this.btnLeftNodeBack[i]);
+            this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_CANCEL, this.onTouchHide, this.btnLeftNodeBack[i]);
+        }
 
     }
 
     start() {
+        // this.btnLeftNodeBack[0].active = false
+
     }
 
     onInRange() {
@@ -46,6 +61,14 @@ export default class NewClass extends cc.Component {
             let sqe = cc.sequence(dely, mTo);
             this.btnRightNode[i].runAction(sqe);
         }
+    }
+
+    onTouchActive() {   
+        this.active = true
+    }
+    onTouchHide(){
+        this.active = false
+
     }
 
     onOutRange() {
