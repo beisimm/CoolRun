@@ -86,18 +86,23 @@ export default class NewClass extends cc.Component {
         for (let key in HeroInfo) {
             let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
             this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[HeroInfo[key].ID])  //通过HeroID拿到Hero
-            if (HeroInfo[key].isHave) {
+            if (HeroInfo[key].isHave) {  //判断是否已经购买,展示不同的按钮
                 var btnOk = cc.instantiate(this.btnOkPrefab)
                 newPrefa.addChild(btnOk)
+                btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, HeroInfo[key].ID.toString())
             } else {
-                var btnCoin = cc.instantiate(this.coinShopPrefab)
+                var btnCoin = cc.instantiate(this.coinShopPrefab)  //通过Prefab实例获取节点
                 var btnJewel = cc.instantiate(this.jewelShopPrefab)
+                let CoinNode = btnCoin.getChildByName('NODE') //通过子节点的名字获取子节点
+                let JewelLabel = btnJewel.getChildByName('NODE').getComponent(cc.Label)
+                let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label
+                CoinLabel.string = HeroInfo[key].coinPrice.toString()
+                JewelLabel.string = HeroInfo[key].jewelPrice.toString()
                 newPrefa.addChild(btnCoin)
                 newPrefa.addChild(btnJewel)
             }
 
             this.PlayerViewContent.addChild(newPrefa)
-            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, HeroInfo[key].ID.toString())
         }
         // @ts-ignore
         // for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
@@ -131,6 +136,7 @@ export default class NewClass extends cc.Component {
     // update (dt) {}
 
     onHeroSelect() {  //用来修改选择英雄的
+
         let num = Number(this)
         // @ts-ignore
 
@@ -149,7 +155,6 @@ export default class NewClass extends cc.Component {
     }
 
     onTouchActive() {
-
         // @ts-ignore
         this.active = true
     }

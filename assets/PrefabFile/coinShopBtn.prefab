@@ -25,7 +25,7 @@
       }
     ],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 8
@@ -80,7 +80,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "PriceLabel",
+    "_name": "NODE",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -106,7 +106,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50.05,
+      "width": 66.74,
       "height": 40
     },
     "_anchorPoint": {
@@ -155,7 +155,7 @@
     "_useOriginalSize": false,
     "_string": "500",
     "_N$string": "500",
-    "_fontSize": 30,
+    "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
     "_N$file": null,
@@ -173,7 +173,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "405358b2-22cb-444e-b8f6-4c0ddb7b5415"
     },
     "fileId": "3fLSv76zhNqoNmvm7JWyHg",
     "sync": false
@@ -276,7 +276,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "405358b2-22cb-444e-b8f6-4c0ddb7b5415"
     },
     "fileId": "6d2GRqr55EiJMTFE7vudTB",
     "sync": false
@@ -317,7 +317,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "405358b2-22cb-444e-b8f6-4c0ddb7b5415"
     },
     "fileId": "aeDmN9WtBOzqHipa97iD1H",
     "sync": false
