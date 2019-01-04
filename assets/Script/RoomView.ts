@@ -94,10 +94,14 @@ export default class NewClass extends cc.Component {
                 var btnCoin = cc.instantiate(this.coinShopPrefab)  //通过Prefab实例获取节点
                 var btnJewel = cc.instantiate(this.jewelShopPrefab)
                 let CoinNode = btnCoin.getChildByName('NODE') //通过子节点的名字获取子节点
-                let JewelLabel = btnJewel.getChildByName('NODE').getComponent(cc.Label)
-                let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label
-                CoinLabel.string = HeroInfo[key].coinPrice.toString()
-                JewelLabel.string = HeroInfo[key].jewelPrice.toString()
+                let JewelNode = btnJewel.getChildByName('NODE')
+                // let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label
+                // CoinLabel.string = HeroInfo[key].coinPrice.toString()
+                // JewelLabel.string = HeroInfo[key].jewelPrice.toString()
+                // @ts-ignore
+                this.changeNodeLabel(CoinNode, HeroInfo[key].coinPrice)
+                // @ts-ignore
+                this.changeNodeLabel(JewelNode, HeroInfo[key].jewelPrice)
                 newPrefa.addChild(btnCoin)
                 newPrefa.addChild(btnJewel)
             }
@@ -133,8 +137,12 @@ export default class NewClass extends cc.Component {
 
     }
 
-    // update (dt) {}
+    changeNodeLabel(Node:Node, value:number){  //通过Node直接改变其中Label组件的值
+        // @ts-ignore
+        Node.getComponent(cc.Label).string = value.toString()
+    }
 
+    // update (dt) {}
     onHeroSelect() {  //用来修改选择英雄的
 
         let num = Number(this)
