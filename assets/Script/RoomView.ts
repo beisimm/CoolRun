@@ -55,8 +55,13 @@ export default class NewClass extends cc.Component {
     HeroPrefaList: cc.Prefab = []
 
     @property(cc.Prefab)
-        // @ts-ignore
     btnOkPrefab: cc.Prefab = null
+
+    @property(cc.Prefab)
+    coinShopPrefab: cc.Prefab = null
+
+    @property(cc.Prefab)
+    jewelShopPrefab: cc.Prefab = null
 
     @property(cc.Node)
     PlayView: cc.Node = null
@@ -78,18 +83,31 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         this.onShowMainView()  //初始化RoomView
-        for(let key in HeroInfo){
-            cc.log(HeroInfo[key])
+        for (let key in HeroInfo) {
+            let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
+            this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[HeroInfo[key].ID])  //通过HeroID拿到Hero
+            if (HeroInfo[key].isHave) {
+                var btnOk = cc.instantiate(this.btnOkPrefab)
+                newPrefa.addChild(btnOk)
+            } else {
+                var btnCoin = cc.instantiate(this.coinShopPrefab)
+                var btnJewel = cc.instantiate(this.jewelShopPrefab)
+                newPrefa.addChild(btnCoin)
+                newPrefa.addChild(btnJewel)
+            }
+
+            this.PlayerViewContent.addChild(newPrefa)
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, HeroInfo[key].ID.toString())
         }
         // @ts-ignore
-        for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
-            let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
-            this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[i])
-            var btnOk = cc.instantiate(this.btnOkPrefab)
-            newPrefa.addChild(btnOk)
-            this.PlayerViewContent.addChild(newPrefa)
-            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, i.toString())
-        }
+        // for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
+        //     let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
+        //     this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[i])
+        //     var btnOk = cc.instantiate(this.btnOkPrefab)
+        //     newPrefa.addChild(btnOk)
+        //     this.PlayerViewContent.addChild(newPrefa)
+        //     btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, i.toString())
+        // }
         // @ts-ignore
         this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //在视图里根据用户选择的角色id进行渲染
         // @ts-ignore
