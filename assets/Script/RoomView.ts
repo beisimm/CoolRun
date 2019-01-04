@@ -78,6 +78,9 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         this.onShowMainView()  //初始化RoomView
+        for(let key in HeroInfo){
+            cc.log(HeroInfo[key])
+        }
         // @ts-ignore
         for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
             let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
@@ -159,25 +162,25 @@ export default class NewClass extends cc.Component {
         this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //切换主界面显示的Hero
     }
 
-    onAddCoinNumber(){
+    onAddCoinNumber() {
         // @ts-ignore
         window.coin += 100
         // @ts-ignore
-        if (window.coin > 10000){
+        if (window.coin > 10000) {
             // @ts-ignore
-            this.coinLabel.string = (window.coin /10000) + '万'
+            this.coinLabel.string = (window.coin / 10000) + '万'
         }
         // @ts-ignore
         this.coinLabel.string = window.coin.toString()
     }
 
-    onAddJewelNumber(){
+    onAddJewelNumber() {
         // @ts-ignore
         window.jewel += 100
         // @ts-ignore
-        if (window.jewel > 10000){
+        if (window.jewel > 10000) {
             // @ts-ignore
-            this.jewelLabel.string = (window.jewel /10000) + '万'
+            this.jewelLabel.string = (window.jewel / 10000) + '万'
         }
         // @ts-ignore
         this.jewelLabel.string = window.jewel.toString()
