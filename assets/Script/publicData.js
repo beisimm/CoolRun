@@ -5,3 +5,6 @@ HeroID.push(1)
 HeroID.push(2)
 
 window.SelectHeroID = 1 //选择的英雄id
+
+window.coin = 10000 //金币数量
+window.jewel = 100 //钻石数量

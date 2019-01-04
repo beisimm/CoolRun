@@ -37,6 +37,12 @@ export default class NewClass extends cc.Component {
     @property(cc.Node)
     RoomHeroShow: cc.Node = null
 
+    @property(cc.Label)
+    coinLabel: cc.Label = null
+
+    @property(cc.Label)
+    jewelLabel: cc.Label = null
+
     @property(cc.Node)
     PlayerViewContent: cc.Node = null
 
@@ -83,7 +89,10 @@ export default class NewClass extends cc.Component {
         }
         // @ts-ignore
         this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //在视图里根据用户选择的角色id进行渲染
-
+        // @ts-ignore
+        this.coinLabel.string = window.coin.toString()  //显示金币数量
+        // @ts-ignore
+        this.jewelLabel.string = window.jewel.toString()  // 显示钻石数量
 
         // @ts-ignore
         for (let i = 0; i < this.btnLeftNode.length; i++) {  //通过点击让下方呈现按压颜色
@@ -150,6 +159,29 @@ export default class NewClass extends cc.Component {
         this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //切换主界面显示的Hero
     }
 
+    onAddCoinNumber(){
+        // @ts-ignore
+        window.coin += 100
+        // @ts-ignore
+        if (window.coin > 10000){
+            // @ts-ignore
+            this.coinLabel.string = (window.coin /10000) + '万'
+        }
+        // @ts-ignore
+        this.coinLabel.string = window.coin.toString()
+    }
+
+    onAddJewelNumber(){
+        // @ts-ignore
+        window.jewel += 100
+        // @ts-ignore
+        if (window.jewel > 10000){
+            // @ts-ignore
+            this.jewelLabel.string = (window.jewel /10000) + '万'
+        }
+        // @ts-ignore
+        this.jewelLabel.string = window.jewel.toString()
+    }
 
     onShowPlayerView() {
         this.MainView.active = false
