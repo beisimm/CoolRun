@@ -4,4 +4,4 @@ HeroID.push(0)
 HeroID.push(1)
 HeroID.push(2)
 
-window.SelectHeroID = 1
+window.SelectHeroID = 1 //选择的英雄id

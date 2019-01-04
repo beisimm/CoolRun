@@ -82,7 +82,7 @@ export default class NewClass extends cc.Component {
             btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, i.toString())
         }
         // @ts-ignore
-        this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])
+        this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //在视图里根据用户选择的角色id进行渲染
 
 
         // @ts-ignore
@@ -100,7 +100,7 @@ export default class NewClass extends cc.Component {
 
     // update (dt) {}
 
-    onHeroSelect() {
+    onHeroSelect() {  //用来修改选择英雄的
         let num = Number(this)
         // @ts-ignore
 
