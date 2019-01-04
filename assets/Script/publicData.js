@@ -22,7 +22,7 @@ HeroInfo.Hero_1 = {
 HeroInfo.Hero_2 = {
     ID : 2,
     coinPrice:800,
-    jewelPrice:800,
+    jewelPrice:80,
     detail:'被绿了,当然是选择原谅他',
     isHave:false
 }

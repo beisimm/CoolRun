@@ -74,9 +74,8 @@ export default class NewClass extends cc.Component {
     btnStartGame: cc.Button = null;
 
     // LIFE-CYCLE CALLBACKS:
-    addHeroNodeFrefab(Node, Prefab) {
-        this.RoomHeroShow.removeAllChildren()
-
+    addHeroNodeFrefab(Node, Prefab) {  //先清空Node的子节点, 然后再通过Prefab插入子节点
+        Node.removeAllChildren()
         let heroPrefa = cc.instantiate(Prefab)
         Node.addChild(heroPrefa)
     }
@@ -85,27 +84,34 @@ export default class NewClass extends cc.Component {
         this.onShowMainView()  //初始化RoomView
         for (let key in HeroInfo) {
             let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
-            this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[HeroInfo[key].ID])  //通过HeroID拿到Hero
-            if (HeroInfo[key].isHave) {  //判断是否已经购买,展示不同的按钮
-                var btnOk = cc.instantiate(this.btnOkPrefab)
-                newPrefa.addChild(btnOk)
-                btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, HeroInfo[key].ID.toString())
+            this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[HeroInfo[key].ID])  //通过HeroID拿到Hero作为HeroList展示用
+            var btnOk = cc.instantiate(this.btnOkPrefab)
+            var btnCoin = cc.instantiate(this.coinShopPrefab)  //通过Prefab实例获取节点
+            var btnJewel = cc.instantiate(this.jewelShopPrefab)
+            let CoinNode = btnCoin.getChildByName('NODE') //通过子节点的名字获取子节点
+            let JewelNode = btnJewel.getChildByName('NODE')
+            // let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label
+            // CoinLabel.string = HeroInfo[key].coinPrice.toString()
+            // JewelLabel.string = HeroInfo[key].jewelPrice.toString()
+            // @ts-ignore
+            this.changeNodeLabel(CoinNode, HeroInfo[key].coinPrice)
+            // @ts-ignore
+            this.changeNodeLabel(JewelNode, HeroInfo[key].jewelPrice)
+            newPrefa.addChild(btnOk)
+            newPrefa.addChild(btnCoin)
+            newPrefa.addChild(btnJewel)
+            if (HeroInfo[key].isHave) {
+                btnOk.active = true
+                btnCoin.active = false
+                btnJewel.active = false
             } else {
-                var btnCoin = cc.instantiate(this.coinShopPrefab)  //通过Prefab实例获取节点
-                var btnJewel = cc.instantiate(this.jewelShopPrefab)
-                let CoinNode = btnCoin.getChildByName('NODE') //通过子节点的名字获取子节点
-                let JewelNode = btnJewel.getChildByName('NODE')
-                // let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label
-                // CoinLabel.string = HeroInfo[key].coinPrice.toString()
-                // JewelLabel.string = HeroInfo[key].jewelPrice.toString()
-                // @ts-ignore
-                this.changeNodeLabel(CoinNode, HeroInfo[key].coinPrice)
-                // @ts-ignore
-                this.changeNodeLabel(JewelNode, HeroInfo[key].jewelPrice)
-                newPrefa.addChild(btnCoin)
-                newPrefa.addChild(btnJewel)
+                btnOk.active = false
+                btnCoin.active = true
+                btnJewel.active = true
             }
 
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, HeroInfo[key].ID.toString())
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.NodeHide, btnOk)
             this.PlayerViewContent.addChild(newPrefa)
         }
         // @ts-ignore
@@ -136,13 +142,18 @@ export default class NewClass extends cc.Component {
     start() {
 
     }
+    // update (dt) {}
 
-    changeNodeLabel(Node:Node, value:number){  //通过Node直接改变其中Label组件的值
+    NodeHide (){
+        cc.log(this)
+        this.active = false
+    }
+
+    changeNodeLabel(Node: Node, value: number) {  //通过Node直接改变其中Label组件的值
         // @ts-ignore
         Node.getComponent(cc.Label).string = value.toString()
     }
 
-    // update (dt) {}
     onHeroSelect() {  //用来修改选择英雄的
 
         let num = Number(this)

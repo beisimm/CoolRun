@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 1.9453098948245524,
-      "y": 1.9453098948245524,
-      "z": 1.9453098948245524
+      "x": 1,
+      "y": 1,
+      "z": 1
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -5129,6 +5129,12 @@
     ],
     "btnOkPrefab": {
       "__uuid__": "76937c48-5f19-4faf-a96a-22fbed3e4920"
+    },
+    "coinShopPrefab": {
+      "__uuid__": "4dc682fd-7de8-4927-8108-f00b05481d65"
+    },
+    "jewelShopPrefab": {
+      "__uuid__": "b8c5fd2d-d3e2-411c-8a7b-ba3c3fbfb76b"
     },
     "PlayView": {
       "__id__": 50
