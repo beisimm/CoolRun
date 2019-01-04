@@ -29,8 +29,12 @@ export default class NewClass extends cc.Component {
         // @ts-ignore
     btnLeftNode: cc.Node = []
 
+
     @property(cc.Node)
     MainView: cc.Node = null
+
+    @property(cc.Node)
+    RoomHeroShow: cc.Node = null
 
     @property(cc.Node)
     PlayerViewContent: cc.Node = null
@@ -38,6 +42,10 @@ export default class NewClass extends cc.Component {
     @property(cc.Prefab)
     Prefa: cc.Prefab = null
 
+
+    @property(cc.Prefab)
+        // @ts-ignore
+    HeroPrefaList: cc.Prefab = []
 
     @property(cc.Node)
     PlayView: cc.Node = null
@@ -52,11 +60,15 @@ export default class NewClass extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.onShowMainView()
-        // for (let i = 0; i < 10; i++) {  //添加10个预制
-        //     let newprefa = cc.instantiate(this.Prefa)
-        //     this.PlayerViewContent.addChild(newprefa)
-        // }
+        this.onShowMainView()  //初始化RoomView
+        for (let i = 0; i < HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
+            let newPrefa = cc.instantiate(this.Prefa)  //
+            this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[i])
+            this.PlayerViewContent.addChild(newPrefa)
+        }
+
+
+
         // @ts-ignore
         for (let i = 0; i < this.btnLeftNode.length; i++) {  //通过点击让下方呈现按压颜色
             this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_START, this.onTouchActive, this.btnLeftNodeBack[i]);
@@ -128,4 +140,10 @@ export default class NewClass extends cc.Component {
 
         }, 800);
     }
+
+    addHeroNodeFrefab(Node, Prefab) {
+        let heroPrefa = cc.instantiate(Prefab)
+        Node.addChild(heroPrefa)
+    }
+
 }
