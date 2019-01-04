@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "GameUI1_19",
+    "_name": "HeroBackGround",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -107,7 +107,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "0e0fb213-70cb-498c-a70f-53aafd341dfb"
     },
     "fileId": "32/5+djldILLaUeQkvqGw9",
     "sync": false

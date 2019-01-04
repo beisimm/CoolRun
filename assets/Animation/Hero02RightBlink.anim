@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Hero02RightBlink",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2.5,
+  "sample": 4,
+  "speed": 1.5,
+  "wrapMode": "2",
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "7e12afcc-a15d-4949-8a53-8cf52a6016f0"
+            }
+          },
+          {
+            "frame": 1.5,
+            "value": {
+              "__uuid__": "459f5551-cbc1-42da-937b-b3c1364f02f2"
+            }
+          },
+          {
+            "frame": 1.75,
+            "value": {
+              "__uuid__": "06dabf3a-6376-44c7-b2a0-a7d86582a1ce"
+            }
+          },
+          {
+            "frame": 2.25,
+            "value": {
+              "__uuid__": "459f5551-cbc1-42da-937b-b3c1364f02f2"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

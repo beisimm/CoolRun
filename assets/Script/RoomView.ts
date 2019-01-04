@@ -53,10 +53,10 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         this.onShowMainView()
-        for (let i = 0; i < 10; i++) {
-            let newprefa = cc.instantiate(this.Prefa)
-            this.PlayerViewContent.addChild(newprefa)
-        }
+        // for (let i = 0; i < 10; i++) {  //添加10个预制
+        //     let newprefa = cc.instantiate(this.Prefa)
+        //     this.PlayerViewContent.addChild(newprefa)
+        // }
         // @ts-ignore
         for (let i = 0; i < this.btnLeftNode.length; i++) {  //通过点击让下方呈现按压颜色
             this.btnLeftNode[i].on(cc.Node.EventType.TOUCH_START, this.onTouchActive, this.btnLeftNodeBack[i]);
