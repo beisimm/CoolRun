@@ -9,6 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import delayTime = cc.delayTime;
+import Prefab = cc.Prefab;
 
 const {ccclass, property} = cc._decorator;
 
@@ -22,7 +23,7 @@ export default class NewClass extends cc.Component {
     text: string = 'hello';
 
     @property(cc.Node)
-    // @ts-ignore
+        // @ts-ignore
     btnRightNode: cc.Node = []
 
     @property(cc.Node)
@@ -47,6 +48,10 @@ export default class NewClass extends cc.Component {
         // @ts-ignore
     HeroPrefaList: cc.Prefab = []
 
+    @property(cc.Prefab)
+        // @ts-ignore
+    btnOkPrefab: cc.Prefab = null
+
     @property(cc.Node)
     PlayView: cc.Node = null
 
@@ -58,17 +63,26 @@ export default class NewClass extends cc.Component {
     btnStartGame: cc.Button = null;
 
     // LIFE-CYCLE CALLBACKS:
+    addHeroNodeFrefab(Node, Prefab) {
+        this.RoomHeroShow.removeAllChildren()
+
+        let heroPrefa = cc.instantiate(Prefab)
+        Node.addChild(heroPrefa)
+    }
 
     onLoad() {
         this.onShowMainView()  //初始化RoomView
         // @ts-ignore
         for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
-            let newPrefa = cc.instantiate(this.Prefa)
+            let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
             this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[i])
+            var btnOk = cc.instantiate(this.btnOkPrefab)
+            newPrefa.addChild(btnOk)
             this.PlayerViewContent.addChild(newPrefa)
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, i.toString())
         }
-
-        this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[SelectHeroID])
+        // @ts-ignore
+        this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])
 
 
         // @ts-ignore
@@ -86,6 +100,12 @@ export default class NewClass extends cc.Component {
 
     // update (dt) {}
 
+    onHeroSelect() {
+        let num = Number(this)
+        // @ts-ignore
+
+        window.SelectHeroID = this
+    }
 
     onInRange() {
         // @ts-ignore
@@ -126,7 +146,8 @@ export default class NewClass extends cc.Component {
     onShowMainView() {
         this.MainView.active = true
         this.PlayView.active = false
-
+        // @ts-ignore
+        this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //切换主界面显示的Hero
     }
 
 
@@ -143,9 +164,5 @@ export default class NewClass extends cc.Component {
         }, 800);
     }
 
-    addHeroNodeFrefab(Node, Prefab) {
-        let heroPrefa = cc.instantiate(Prefab)
-        Node.addChild(heroPrefa)
-    }
 
 }

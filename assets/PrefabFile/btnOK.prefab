@@ -58,7 +58,7 @@
       "__type__": "cc.Vec3",
       "x": 0.8,
       "y": 0.8,
-      "z": 1
+      "z": 0.8
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -85,7 +85,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "bb9a47aa-0d1f-421a-979f-0f5662f3554c"
+      "__uuid__": "e14ecdc4-4e69-4e21-a961-475442ca28c0"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -114,13 +114,11 @@
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
-    "clickEvents": [
-      null
-    ],
+    "clickEvents": [],
     "_N$interactable": true,
     "_N$enableAutoGrayEffect": false,
-    "_N$transition": 0,
-    "transition": 0,
+    "_N$transition": 3,
+    "transition": 3,
     "_N$normalColor": {
       "__type__": "cc.Color",
       "r": 214,
@@ -180,7 +178,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "bd4PMZZWdHxoXmKj9mn6ol",
+    "fileId": "11HAK0tbtOepPvGziLlPvd",
     "sync": false
   }
 ]

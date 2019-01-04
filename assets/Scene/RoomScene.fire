@@ -301,7 +301,7 @@
         "__id__": 49
       }
     ],
-    "_active": false,
+    "_active": true,
     "_level": 3,
     "_components": [],
     "_prefab": null,
@@ -2563,7 +2563,7 @@
         "__id__": 57
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 3,
     "_components": [],
     "_prefab": null,
@@ -3911,6 +3911,9 @@
         "__uuid__": "e9f69dcd-68b4-44c7-93dc-ce56f8d10761"
       }
     ],
+    "btnOkPrefab": {
+      "__uuid__": "76937c48-5f19-4faf-a96a-22fbed3e4920"
+    },
     "PlayView": {
       "__id__": 50
     },

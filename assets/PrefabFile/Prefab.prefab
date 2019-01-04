@@ -22,10 +22,13 @@
     "_components": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 3
       }
     ],
     "_prefab": {
-      "__id__": 3
+      "__id__": 4
     },
     "_opacity": 255,
     "_color": {
@@ -99,6 +102,19 @@
     "_atlas": {
       "__uuid__": "10d2abe9-ec47-4584-8d9e-d3350512bd90"
     },
+    "_id": ""
+  },
+  {
+    "__type__": "22a51z8uVtOaoUvFHx62gr+",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "label": null,
+    "btnOK": null,
+    "text": "hello",
     "_id": ""
   },
   {
