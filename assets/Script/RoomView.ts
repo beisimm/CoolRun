@@ -22,7 +22,7 @@ export default class NewClass extends cc.Component {
     text: string = 'hello';
 
     @property(cc.Node)
-        // @ts-ignore
+    // @ts-ignore
     btnRightNode: cc.Node = []
 
     @property(cc.Node)
@@ -61,12 +61,14 @@ export default class NewClass extends cc.Component {
 
     onLoad() {
         this.onShowMainView()  //初始化RoomView
-        for (let i = 0; i < HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
-            let newPrefa = cc.instantiate(this.Prefa)  //
+        // @ts-ignore
+        for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
+            let newPrefa = cc.instantiate(this.Prefa)
             this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[i])
             this.PlayerViewContent.addChild(newPrefa)
         }
 
+        this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[SelectHeroID])
 
 
         // @ts-ignore
