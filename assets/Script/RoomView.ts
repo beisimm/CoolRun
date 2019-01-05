@@ -161,10 +161,9 @@ export default class NewClass extends cc.Component {
 
             let nodeOK = nodes[i].getChildByName('btnOK')
             // @ts-ignore
-
             if (i == window.SelectHeroID) {  //如果是你选择的角色, 而且有那么不显示确定按钮
                 nodeOK.active = false
-
+            // @ts-ignore
             } else if (i != window.SelectHeroID && have) {
                 nodeOK.active = true
 
@@ -258,7 +257,6 @@ export default class NewClass extends cc.Component {
 
 
     onShop() {  //点击购买
-        cc.log(this)
         if (this[4] == "btnCoin") {
             cc.log("btnCoin进来了")
             // @ts-ignore
