@@ -1,0 +1,31 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Roll01",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 2,
+  "speed": 3,
+  "wrapMode": "1",
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "cc0c652d-26ff-4191-93d3-6322a303fcc8"
+            }
+          },
+          {
+            "frame": 0.5,
+            "value": {
+              "__uuid__": "4fd09b3f-6795-4b69-b628-d7aa5535506a"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

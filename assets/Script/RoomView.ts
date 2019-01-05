@@ -94,7 +94,7 @@ export default class NewClass extends cc.Component {
             var btnJewel = cc.instantiate(this.jewelShopPrefab)
             let CoinNode = btnCoin.getChildByName('NODE') //通过子节点的名字获取子节点
             let JewelNode = btnJewel.getChildByName('NODE')
-            // let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label
+            // let CoinLabel = CoinNode.getComponent(cc.Label)  //获取子节点的Label组件
             // CoinLabel.string = HeroInfo[key].coinPrice.toString()
             // JewelLabel.string = HeroInfo[key].jewelPrice.toString()
             // @ts-ignore

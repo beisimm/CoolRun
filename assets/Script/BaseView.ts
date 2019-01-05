@@ -25,30 +25,52 @@ export default class NewClass extends cc.Component {
     @property(cc.Animation)
     animationHero: cc.Animation = null;
 
+    @property(cc.Prefab)
+        // @ts-ignore
+    HeroPrefabList: cc.Prefab = []
+
+    @property(cc.Node)
+    HeroSite: cc.Node = null
+
     @property(cc.Node)
     btnRoll: cc.Node = null;
 
     @property(cc.Node)
-    // @ts-ignore
+        // @ts-ignore
     backGroup1: cc.Node = [];
 
     @property(cc.Node)
-    // @ts-ignore
+        // @ts-ignore
     backGroup2: cc.Node = [];
 
     @property(cc.Node)
-    // @ts-ignore
+        // @ts-ignore
     backGroup3: cc.Node = [];
 
     @property(cc.Node)
-    // @ts-ignore
+        // @ts-ignore
     bgFloor: cc.Node = [];
 
     // LIFE-CYCLE CALLBACKS:
     jumpNum: number = 0;  // 用来做二段跳
 
+    Run = 'Run0' + SelectHeroID
+    Jump = 'Jump0' + SelectHeroID
+    Roll = 'Roll0' + SelectHeroID
+
     onLoad() {
-        this.animationHero.play('Run');
+        // @ts-ignore
+        for (let i = 0; i < this.HeroPrefabList.length; i++) {
+            // @ts-ignore
+            if (i == SelectHeroID) {  //根据选择英雄的ID来创建选择的对象
+                var Hero = cc.instantiate(this.HeroPrefabList[i])
+                this.HeroSite.addChild(Hero)
+                // @ts-ignore
+                var HeroAnim = Hero.getComponent(cc.Animation)  //获取角色动画
+                HeroAnim.play(this.Run)
+            }
+        }
+        // this.animationHero.play('Run');
         this.btnRoll.on(cc.Node.EventType.TOUCH_START, this.touchStart, this);
         this.btnRoll.on(cc.Node.EventType.TOUCH_END, this.touchEnd, this);
         this.btnRoll.on(cc.Node.EventType.TOUCH_CANCEL, this.touchEnd, this);
@@ -78,6 +100,7 @@ export default class NewClass extends cc.Component {
         this.floolMove(this.bgFloor[1]);
     }
 
+
     bg1Move(bg: cc.Node) {
         // @ts-ignore
         bg.x -= backGroundSpeed1;  //移动速度
@@ -98,7 +121,7 @@ export default class NewClass extends cc.Component {
         // @ts-ignore
         bg.x -= backGroundSpeed3;
         if (bg.x < -bg.width) {
-            bg.x += bg.width * 2-2;
+            bg.x += bg.width * 2 - 2;
         }
     }
 
@@ -109,6 +132,7 @@ export default class NewClass extends cc.Component {
             bg.x += bg.width * 2;
         }
     }
+
     callBackFunc() {
         this.animationHero.play('Run');
 
@@ -137,7 +161,7 @@ export default class NewClass extends cc.Component {
 
     onAnimationChang(target, data) {
         if (data == 'Jump') {
-            if (this.animationHero.currentClip.name == 'Jump') {  //防止连续跳跃
+            if (this.animationHero.currentClip.name == 'Jump00') {  //防止连续跳跃
                 return
             }
             let actionTo = cc.jumpTo(1, cc.v2(-123, -50), 70, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
