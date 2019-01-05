@@ -18,7 +18,7 @@
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 4,
+    "_level": 1,
     "_components": [
       {
         "__id__": 2
@@ -128,7 +128,7 @@
         "__uuid__": "9506abe8-efef-4939-8039-1f54f79ca5dc"
       }
     ],
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_id": ""
   },
   {
@@ -137,7 +137,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "5cec1fc4-63d2-42ef-a054-ab64144c1268"
     },
     "fileId": "c0gvbcyyVAyZs37WRCFNJC",
     "sync": false
