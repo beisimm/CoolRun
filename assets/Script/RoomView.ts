@@ -110,7 +110,7 @@ export default class NewClass extends cc.Component {
                 btnJewel.active = true
             }
 
-            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, [btnOk, HeroInfo[key].ID])
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, [btnOk, HeroInfo[key]])
             btnCoin.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnCoin', this.coinLabel])
             btnJewel.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnJewel', this.jewelLabel])
             this.PlayerViewContent.addChild(newPrefa)
@@ -154,9 +154,22 @@ export default class NewClass extends cc.Component {
 
     onHeroSelect() {  //用来修改选择英雄的, 然后把按钮隐藏掉
         cc.log(this)
-        this[0].active = false
+        let nodes = this[0].parent.parent.children  //查找兄弟节点
+        for (let i = 0; i < nodes.length; i++) {
+            let nodeOK = nodes[i].getChildByName('btnOK')
+            // @ts-ignore
+            if (i != window.SelectHeroID && this[1].isHave) {
+
+                nodeOK.active = true
+            } else {
+                nodeOK.active = false
+
+
+            }
+        }
         // @ts-ignore
-        window.SelectHeroID = this[1]
+        // this[0].active = false
+        window.SelectHeroID = this[1].ID
     }
 
     onInRange() {
@@ -230,6 +243,7 @@ export default class NewClass extends cc.Component {
     onShowPlayerView() {
         this.MainView.active = false
         this.PlayView.active = true
+
     }
 
     onGameStart() {  //切换场景
@@ -245,29 +259,36 @@ export default class NewClass extends cc.Component {
         cc.log(this)
         if (this[4] == "btnCoin") {
             cc.log("btnCoin进来了")
+            // @ts-ignore
             if (this[1].coinPrice < window.coin) {
+                // @ts-ignore
                 window.coin -= this[1].coinPrice
+                // @ts-ignore
                 this[5].string = window.coin.toString()
                 this[2].active = false
                 this[3].active = false
                 this[1].isHave = true
                 this[0].active = true
-            }else {
+            } else {
                 cc.log('你的金币不够请充值')
             }
 
         } else if (this[4] == "btnJewel") {
             cc.log('btnJewel进来了')
+            // @ts-ignore
             if (this[1].jewelPrice < window.jewel) {
+                // @ts-ignore
                 window.jewel -= this[1].jewelPrice  //这里出过一个坑, 你要拆分成两步来写,如果只写一步的话就没有给全局的jewel赋值
+                // @ts-ignore
                 this[5].string = window.jewel.toString()
                 this[2].active = false
                 this[3].active = false
                 this[1].isHave = true
                 this[0].active = true
-            }else {
+            } else {
                 cc.log('你的钻石不够请充值')
             }
         }
     }
+
 }
