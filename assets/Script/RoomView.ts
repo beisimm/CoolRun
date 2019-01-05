@@ -10,6 +10,7 @@
 
 import delayTime = cc.delayTime;
 import Prefab = cc.Prefab;
+import Label = cc.Label;
 
 const {ccclass, property} = cc._decorator;
 
@@ -30,6 +31,8 @@ export default class NewClass extends cc.Component {
         // @ts-ignore
     btnLeftNode: cc.Node = []
 
+    @property(cc.Node)
+    warnWindow: cc.Node = null
 
     @property(cc.Node)
     MainView: cc.Node = null
@@ -100,6 +103,7 @@ export default class NewClass extends cc.Component {
             newPrefa.addChild(btnOk)
             newPrefa.addChild(btnCoin)
             newPrefa.addChild(btnJewel)
+            // @ts-ignore
             if (HeroInfo[key].isHave && window.SelectHeroID == HeroInfo[key].ID) {
                 btnOk.active = true
                 btnCoin.active = false
@@ -112,11 +116,10 @@ export default class NewClass extends cc.Component {
 
             btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, [btnOk, HeroInfo[key], HeroInfo])
             btnOk.on(cc.Node.EventType.TOUCH_END, this.onHeroSelect, [btnOk, HeroInfo[key], HeroInfo])
-            btnCoin.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnCoin', this.coinLabel])
-            btnJewel.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnJewel', this.jewelLabel])
+            btnCoin.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnCoin', this.coinLabel, this.warnWindow])
+            btnJewel.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnJewel', this.jewelLabel, this.warnWindow])
             this.PlayerViewContent.addChild(newPrefa)
         }
-        // @ts-ignore
         // for (let i = 0; i < window.HeroID.length; i++) {  // 根据角色数量绘制展示用的英雄选择
         //     let newPrefa = cc.instantiate(this.Prefa)  //实例化HeroList的背景, 这里他已经是个node了
         //     this.addHeroNodeFrefab(newPrefa, this.HeroPrefaList[i])
@@ -154,7 +157,6 @@ export default class NewClass extends cc.Component {
     }
 
     onHeroSelect() {  //用来修改选择英雄的, 然后把按钮隐藏掉
-        cc.log(this)
         let nodes = this[0].parent.parent.children  //查找兄弟节点
         for (let i = 0; i < nodes.length; i++) {
             let have = HeroInfo['Hero_' + i].isHave;
@@ -163,7 +165,7 @@ export default class NewClass extends cc.Component {
             // @ts-ignore
             if (i == window.SelectHeroID) {  //如果是你选择的角色, 而且有那么不显示确定按钮
                 nodeOK.active = false
-            // @ts-ignore
+                // @ts-ignore
             } else if (i != window.SelectHeroID && have) {
                 nodeOK.active = true
 
@@ -206,6 +208,10 @@ export default class NewClass extends cc.Component {
             let sqe = cc.sequence(dely, mTo)
             this.btnRightNode[i].runAction(sqe)
         }
+    }
+
+    onCloseWarn() {
+        this.warnWindow.active = false
     }
 
     onShowMainView() {
@@ -257,6 +263,7 @@ export default class NewClass extends cc.Component {
 
 
     onShop() {  //点击购买
+        let warnLabel = this[6].getChildByName('Label').getComponent(Label);
         if (this[4] == "btnCoin") {
             cc.log("btnCoin进来了")
             // @ts-ignore
@@ -270,7 +277,8 @@ export default class NewClass extends cc.Component {
                 this[1].isHave = true
                 this[0].active = true
             } else {
-                cc.log('你的金币不够请充值')
+                warnLabel.string = '你的金币不足请充值'
+                this[6].active = true
             }
 
         } else if (this[4] == "btnJewel") {
@@ -286,7 +294,9 @@ export default class NewClass extends cc.Component {
                 this[1].isHave = true
                 this[0].active = true
             } else {
-                cc.log('你的钻石不够请充值')
+                warnLabel.string = '你的钻石不足请充值'
+                this[6].active = true
+
             }
         }
     }
