@@ -295,6 +295,7 @@ export default class NewClass extends cc.Component {
                 warnLabel.string = '你的钻石不足\n还差' + (this[1].jewelPrice - window.jewel) + '钻石,请充值'
                 this[6].active = true
 
+                
             }
         }
     }
