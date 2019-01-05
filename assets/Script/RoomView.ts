@@ -246,7 +246,8 @@ export default class NewClass extends cc.Component {
         if (this[4] == "btnCoin") {
             cc.log("btnCoin进来了")
             if (this[1].coinPrice < window.coin) {
-                this[5].string = (window.coin - this[1].coinPrice).toString()
+                window.coin -= this[1].coinPrice
+                this[5].string = window.coin.toString()
                 this[2].active = false
                 this[3].active = false
                 this[1].isHave = true
@@ -258,7 +259,8 @@ export default class NewClass extends cc.Component {
         } else if (this[4] == "btnJewel") {
             cc.log('btnJewel进来了')
             if (this[1].jewelPrice < window.jewel) {
-                this[5].string = (window.coin - this[1].jewelPrice).toString()
+                window.jewel -= this[1].jewelPrice  //这里出过一个坑, 你要拆分成两步来写,如果只写一步的话就没有给全局的jewel赋值
+                this[5].string = window.jewel.toString()
                 this[2].active = false
                 this[3].active = false
                 this[1].isHave = true
