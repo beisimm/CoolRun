@@ -276,7 +276,9 @@ export default class NewClass extends cc.Component {
                 this[1].isHave = true
                 this[0].active = true
             } else {
+
                 warnLabel.string = '你的金币不足\n还差' + (this[1].coinPrice - window.coin) + '金币,请充值'
+
                 this[6].active = true
             }
 
@@ -292,10 +294,11 @@ export default class NewClass extends cc.Component {
                 this[1].isHave = true
                 this[0].active = true
             } else {
+
                 warnLabel.string = '你的钻石不足\n还差' + (this[1].jewelPrice - window.jewel) + '钻石,请充值'
                 this[6].active = true
 
-                
+
             }
         }
     }
