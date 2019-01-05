@@ -100,7 +100,7 @@ export default class NewClass extends cc.Component {
             newPrefa.addChild(btnOk)
             newPrefa.addChild(btnCoin)
             newPrefa.addChild(btnJewel)
-            if (HeroInfo[key].isHave) {
+            if (HeroInfo[key].isHave && window.SelectHeroID == HeroInfo[key].ID) {
                 btnOk.active = true
                 btnCoin.active = false
                 btnJewel.active = false
@@ -110,7 +110,8 @@ export default class NewClass extends cc.Component {
                 btnJewel.active = true
             }
 
-            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, [btnOk, HeroInfo[key]])
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, [btnOk, HeroInfo[key], HeroInfo])
+            btnOk.on(cc.Node.EventType.TOUCH_END, this.onHeroSelect, [btnOk, HeroInfo[key], HeroInfo])
             btnCoin.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnCoin', this.coinLabel])
             btnJewel.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnJewel', this.jewelLabel])
             this.PlayerViewContent.addChild(newPrefa)
@@ -156,19 +157,20 @@ export default class NewClass extends cc.Component {
         cc.log(this)
         let nodes = this[0].parent.parent.children  //查找兄弟节点
         for (let i = 0; i < nodes.length; i++) {
+            let have = HeroInfo['Hero_' + i].isHave;
+
             let nodeOK = nodes[i].getChildByName('btnOK')
             // @ts-ignore
-            if (i != window.SelectHeroID && this[1].isHave) {
 
-                nodeOK.active = true
-            } else {
+            if (i == window.SelectHeroID) {  //如果是你选择的角色, 而且有那么不显示确定按钮
                 nodeOK.active = false
 
+            } else if (i != window.SelectHeroID && have) {
+                nodeOK.active = true
 
             }
         }
         // @ts-ignore
-        // this[0].active = false
         window.SelectHeroID = this[1].ID
     }
 
