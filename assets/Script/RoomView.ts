@@ -110,8 +110,9 @@ export default class NewClass extends cc.Component {
                 btnJewel.active = true
             }
 
-            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, HeroInfo[key].ID.toString())
-            btnOk.on(cc.Node.EventType.TOUCH_START, this.NodeHide, btnOk)
+            btnOk.on(cc.Node.EventType.TOUCH_START, this.onHeroSelect, [btnOk, HeroInfo[key].ID])
+            btnCoin.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnCoin', this.coinLabel])
+            btnJewel.on(cc.Node.EventType.TOUCH_START, this.onShop, [btnOk, HeroInfo[key], btnCoin, btnJewel, 'btnJewel', this.jewelLabel])
             this.PlayerViewContent.addChild(newPrefa)
         }
         // @ts-ignore
@@ -142,24 +143,20 @@ export default class NewClass extends cc.Component {
     start() {
 
     }
+
     // update (dt) {}
 
-    NodeHide (){
-        cc.log(this)
-        this.active = false
-    }
 
     changeNodeLabel(Node: Node, value: number) {  //通过Node直接改变其中Label组件的值
         // @ts-ignore
         Node.getComponent(cc.Label).string = value.toString()
     }
 
-    onHeroSelect() {  //用来修改选择英雄的
-
-        let num = Number(this)
+    onHeroSelect() {  //用来修改选择英雄的, 然后把按钮隐藏掉
+        cc.log(this)
+        this[0].active = false
         // @ts-ignore
-
-        window.SelectHeroID = this
+        window.SelectHeroID = this[1]
     }
 
     onInRange() {
@@ -211,9 +208,11 @@ export default class NewClass extends cc.Component {
         if (window.coin > 10000) {
             // @ts-ignore
             this.coinLabel.string = (window.coin / 10000) + '万'
+        } else {
+            // @ts-ignore
+            this.coinLabel.string = window.coin.toString()
         }
-        // @ts-ignore
-        this.coinLabel.string = window.coin.toString()
+
     }
 
     onAddJewelNumber() {
@@ -242,4 +241,31 @@ export default class NewClass extends cc.Component {
     }
 
 
+    onShop() {  //点击购买
+        cc.log(this)
+        if (this[4] == "btnCoin") {
+            cc.log("btnCoin进来了")
+            if (this[1].coinPrice < window.coin) {
+                this[5].string = (window.coin - this[1].coinPrice).toString()
+                this[2].active = false
+                this[3].active = false
+                this[1].isHave = true
+                this[0].active = true
+            }else {
+                cc.log('你的金币不够请充值')
+            }
+
+        } else if (this[4] == "btnJewel") {
+            cc.log('btnJewel进来了')
+            if (this[1].jewelPrice < window.jewel) {
+                this[5].string = (window.coin - this[1].jewelPrice).toString()
+                this[2].active = false
+                this[3].active = false
+                this[1].isHave = true
+                this[0].active = true
+            }else {
+                cc.log('你的钻石不够请充值')
+            }
+        }
+    }
 }

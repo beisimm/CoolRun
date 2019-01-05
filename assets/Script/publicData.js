@@ -28,5 +28,5 @@ HeroInfo.Hero_2 = {
 }
 window.SelectHeroID = 1 //选择的英雄id
 
-window.coin = 10000 //金币数量
+window.coin = 9000 //金币数量
 window.jewel = 100 //钻石数量
