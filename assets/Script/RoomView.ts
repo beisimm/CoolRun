@@ -11,6 +11,7 @@
 import delayTime = cc.delayTime;
 import Prefab = cc.Prefab;
 import Label = cc.Label;
+import v2 = cc.v2;
 
 const {ccclass, property} = cc._decorator;
 
@@ -178,11 +179,21 @@ export default class NewClass extends cc.Component {
     onInRange() {
         // @ts-ignore
         for (let i = 0; i < this.btnRightNode.length; i++) {
-            cc.log('now' + this.btnRightNode[i]);
             let mTo = cc.moveTo(0.2, 0, this.btnRightNode[i].y);
-            let dely = cc.delayTime(0.5 * i);
+            let dely = cc.delayTime(0.3 * i);
             let sqe = cc.sequence(dely, mTo);
             this.btnRightNode[i].runAction(sqe);
+        }
+    }
+
+    onOutRange() {
+
+        // @ts-ignore
+        for (let i = 0; i < this.btnRightNode.length; i++) {
+            let mTo = cc.moveTo(0.2, v2(200,this.btnRightNode[i].y))
+            let dely = cc.delayTime(0.3 * i)
+            let sqe = cc.sequence(dely, mTo)
+            this.btnRightNode[i].runAction(sqe)
         }
     }
 
@@ -198,27 +209,26 @@ export default class NewClass extends cc.Component {
 
     }
 
-    onOutRange() {
 
-        // @ts-ignore
-        for (let i = 0; i < this.btnRightNode.length; i++) {
-            cc.log('now' + this.btnRightNode[i])
-            let mTo = cc.moveTo(0.2, 163, this.btnRightNode[i].y)
-            let dely = cc.delayTime(0.3 * i)
-            let sqe = cc.sequence(dely, mTo)
-            this.btnRightNode[i].runAction(sqe)
-        }
-    }
-
-    onCloseWarn() {
+    onCloseWarn() {  //关闭警告弹窗
         this.warnWindow.active = false
     }
 
-    onShowMainView() {
+    onShowMainView() {  //切换到房间主视图
         this.MainView.active = true
         this.PlayView.active = false
         // @ts-ignore
         this.addHeroNodeFrefab(this.RoomHeroShow, this.HeroPrefaList[window.SelectHeroID])  //切换主界面显示的Hero
+        this.onInRange()
+    }
+
+    onShowPlayerView() {  //切换到房间角色List
+
+
+        this.MainView.active = false
+        this.PlayView.active = true
+        this.onOutRange()
+
     }
 
     onAddCoinNumber() {
@@ -247,13 +257,8 @@ export default class NewClass extends cc.Component {
         this.jewelLabel.string = window.jewel.toString()
     }
 
-    onShowPlayerView() {
-        this.MainView.active = false
-        this.PlayView.active = true
 
-    }
-
-    onGameStart() {  //切换场景
+    onGameStart() {  //切换到游戏场景
         this.onOutRange()
         setTimeout(function () {  //实现动画效果结束之后再切换场景
             cc.director.loadScene("GameScene")
@@ -263,7 +268,7 @@ export default class NewClass extends cc.Component {
 
 
     onShop() {  //点击购买
-        let warnLabel = this[6].getChildByName('Label').getComponent(Label);
+        let warnLabel = this[6].getChildByName('Label').getComponent(Label); //获取警告的Label组件
         if (this[4] == "btnCoin") {
             // @ts-ignore
             if (this[1].coinPrice < window.coin) {
