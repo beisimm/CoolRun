@@ -10,6 +10,7 @@
 
 import callFunc = cc.callFunc;
 import v2 = cc.v2;
+import Vec3 = cc.Vec3;
 
 const {ccclass, property} = cc._decorator;
 
@@ -52,7 +53,6 @@ export default class NewClass extends cc.Component {
     bgFloor: cc.Node = [];
 
     // LIFE-CYCLE CALLBACKS:
-    jumpNum: number = 0;  // 用来做二段跳
     // @ts-ignore
     Run = 'Run0' + SelectHeroID
     // @ts-ignore
@@ -84,21 +84,29 @@ export default class NewClass extends cc.Component {
         this.backGroup2[1].setPosition(v2(1000, 0));
         this.backGroup3[0].setPosition(v2(0, -91.4));
         this.backGroup3[1].setPosition(v2(499, -91.4));
-        this.bgFloor[0].setPosition(v2(48, 0));
-        this.bgFloor[1].setPosition(v2(643, 0));
 
 
     }
 
+    time = 0
+
     update(dt) {
+        // this.time += dt
+        // if (this.time > dt ) {
+        //     cc.log(HeroAnim.node.y)
+        //     if (HeroAnim.node.y < -48) {
+        //         HeroAnim.play(this.Run);
+        //         this.jumpNum = 0
+        //     }
+        //     this.time = 0
+        // }
+
         this.bg1Move(this.backGroup1[0]);  //背景移动
         this.bg1Move(this.backGroup1[1]);
         this.bg2Move(this.backGroup2[0]);
         this.bg2Move(this.backGroup2[1]);
         this.bg3Move(this.backGroup3[0]);
         this.bg3Move(this.backGroup3[1]);
-        this.floolMove(this.bgFloor[0]);
-        this.floolMove(this.bgFloor[1]);
     }
 
 
@@ -126,19 +134,8 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    floolMove(bg: cc.Node) {
-        // @ts-ignore
-        bg.x -= floorSpeed4;
-        if (bg.x < -bg.width) {
-            bg.x += bg.width * 2;
-        }
-    }
-
-    callBackFunc() {
-        HeroAnim.play(this.Run);
 
 
-    }
 
     touchStart() {  //滑行动作按下
         cc.log('按下滑铲')
@@ -162,18 +159,34 @@ export default class NewClass extends cc.Component {
 
     }
 
+    jumpNum = 0;  // 用来做二段跳
     onJump() {
-        cc.log('按下跳跃=====',HeroAnim.currentClip.name)
 
-        if (HeroAnim.currentClip.name == this.Jump) {  //防止连续跳跃
-            return
+        if (HeroAnim.currentClip.name == this.Run) {  //第一跳
+            cc.log('跳第一次', HeroAnim.node.getPosition(v2()))
+            HeroAnim.play(this.Jump);
+            let actionTo = cc.jumpTo(1, HeroAnim.node.x, HeroAnim.node.y, 60, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
+            let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
+            let seq = cc.sequence(actionTo, callBack);
+            HeroAnim.node.runAction(seq);
+
+            this.jumpNum++
+        } else if (HeroAnim.currentClip.name != this.Run && this.jumpNum < 2) {
+            cc.log('跳第二次', HeroAnim.node.getPosition(v2()))
+            let actionTo = cc.jumpTo(1, HeroAnim.node.x, HeroAnim.node.y, 90, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
+            let reSet = cc.moveTo(0, v2(-123, -49)) // 修正位置
+            let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
+            let seq = cc.sequence(actionTo, reSet, callBack);
+            HeroAnim.node.runAction(seq);
+            this.jumpNum++
         }
-        let actionTo = cc.jumpTo(1, cc.v2(-123, -50), 70, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
-        let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
-        let seq = cc.sequence(actionTo, callBack);
-        HeroAnim.node.runAction(seq);
-        HeroAnim.play(this.Jump);
     }
 
+    callBackFunc() {  //落地
+        if (HeroAnim.node.y < -48) {
+            HeroAnim.play(this.Run);
+            this.jumpNum = 0
+        }
+    }
 
 }
