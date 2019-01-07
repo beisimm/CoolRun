@@ -35,6 +35,9 @@ export default class NewClass extends cc.Component {
     HeroSite: cc.Node = null
 
     @property(cc.Node)
+    returnHall: cc.Node = null
+
+    @property(cc.Node)
     btnRoll: cc.Node = null;
 
     @property(cc.Node)
@@ -62,6 +65,7 @@ export default class NewClass extends cc.Component {
     Roll = 'Roll0' + SelectHeroID
 
     onLoad() {
+        window.returnHall =  this.returnHall
         // @ts-ignore
         for (let i = 0; i < this.HeroPrefabList.length; i++) {
             // @ts-ignore
@@ -196,6 +200,11 @@ export default class NewClass extends cc.Component {
             downSpeed = 1
 
         }
+    }
+    onRetrun(){
+
+        returnHall.active = false
+        cc.director.loadScene("RoomScene")
     }
 
 }

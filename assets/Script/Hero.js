@@ -1,8 +1,11 @@
 cc.Class({
     extends: cc.Component,
+    properties: {
+    },
 
     // use this for initialization
     onLoad: function () {
+
         cc.director.getCollisionManager().enabled = true;
         cc.director.getCollisionManager().enabledDebugDraw = true;
         cc.director.getCollisionManager().enabledDrawBoundingBox = true;
@@ -10,12 +13,14 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
-        cc.log('self',self)
-        cc.log('other',other)
+        cc.log(returnHall)
+        cc.log('self', self)
+        cc.log('other', other)
         if (self.tag == HeroTag && other.tag == DieTag) { //死亡碰撞
             cc.log('游戏结束')
             HeroAnim.stop()
             isGameRun = false
+            returnHall.active = true
         }
 
         downSpeed = 0
