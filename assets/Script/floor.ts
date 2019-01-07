@@ -57,7 +57,6 @@ export default class NewClass extends cc.Component {
         this.floorMove.addChild(floorRight)
         this.floorStartX += floorRight.width - 1
 
-        cc.log(this.floorStartX)
         this.floorStartX += Math.random() * 100  //随机出现断崖
     }
 

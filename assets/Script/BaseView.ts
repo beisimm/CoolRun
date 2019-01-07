@@ -14,6 +14,7 @@ import Vec3 = cc.Vec3;
 
 const {ccclass, property} = cc._decorator;
 
+
 @ccclass
 export default class NewClass extends cc.Component {
 
@@ -70,12 +71,19 @@ export default class NewClass extends cc.Component {
                 // @ts-ignore
                 window.HeroAnim = Hero.getComponent(cc.Animation)  //获取角色动画
                 HeroAnim.play(this.Run)
+                break
             }
         }
         this.btnRoll.on(cc.Node.EventType.TOUCH_START, this.touchStart, this);
         this.btnRoll.on(cc.Node.EventType.TOUCH_END, this.touchEnd, this);
         this.btnRoll.on(cc.Node.EventType.TOUCH_CANCEL, this.touchEnd, this);
+
+        // var manager = cc.director.getCollisionManager();
+        // manager.enabled = true  //碰撞开始
+        // manager.enabledDebugDraw = true  //绘制碰撞框
+
     }
+
 
     start() {
         this.backGroup1[0].setPosition(v2(0, 25)); // 初始化背景
@@ -91,15 +99,6 @@ export default class NewClass extends cc.Component {
     time = 0
 
     update(dt) {
-        // this.time += dt
-        // if (this.time > dt ) {
-        //     cc.log(HeroAnim.node.y)
-        //     if (HeroAnim.node.y < -48) {
-        //         HeroAnim.play(this.Run);
-        //         this.jumpNum = 0
-        //     }
-        //     this.time = 0
-        // }
 
         this.bg1Move(this.backGroup1[0]);  //背景移动
         this.bg1Move(this.backGroup1[1]);
@@ -109,6 +108,18 @@ export default class NewClass extends cc.Component {
         this.bg3Move(this.backGroup3[1]);
     }
 
+    // onCollisionEnter (other) {
+    //     cc.log(1111111111)
+    //     this.node.color = cc.Color.RED;
+    // }
+    //
+    // onCollisionStay (other) {
+    //     console.log('on collision stay');
+    // }
+    //
+    // onCollisionExit () {
+    //     cc.log('碰撞离开')
+    // }
 
     bg1Move(bg: cc.Node) {
         // @ts-ignore
@@ -133,8 +144,6 @@ export default class NewClass extends cc.Component {
             bg.x += bg.width * 2 - 2;
         }
     }
-
-
 
 
     touchStart() {  //滑行动作按下
