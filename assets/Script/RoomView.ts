@@ -259,11 +259,13 @@ export default class NewClass extends cc.Component {
 
 
     onGameStart() {  //切换到游戏场景
+
         this.onOutRange()
         setTimeout(function () {  //实现动画效果结束之后再切换场景
             cc.director.loadScene("GameScene")
 
         }, 800);
+        isGameRun = true
     }
 
 

@@ -63,6 +63,9 @@ export default class NewClass extends cc.Component {
     num = 0
 
     update(dt) {
+        if(!isGameRun){
+            return
+        }
         this.num += dt * floorSpeed4
         this.floorMove.x -= dt * floorSpeed4  //地板的移动
         if (this.num > 500) {  // 每移动一个屏幕的距离绘制一次地板

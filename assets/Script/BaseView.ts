@@ -66,7 +66,7 @@ export default class NewClass extends cc.Component {
         for (let i = 0; i < this.HeroPrefabList.length; i++) {
             // @ts-ignore
             if (i == SelectHeroID) {  //根据选择英雄的ID来创建选择的对象
-                var Hero = cc.instantiate(this.HeroPrefabList[i])
+                window.Hero = cc.instantiate(this.HeroPrefabList[i])
                 this.HeroSite.addChild(Hero)
                 // @ts-ignore
                 window.HeroAnim = Hero.getComponent(cc.Animation)  //获取角色动画
@@ -78,9 +78,6 @@ export default class NewClass extends cc.Component {
         this.btnRoll.on(cc.Node.EventType.TOUCH_END, this.touchEnd, this);
         this.btnRoll.on(cc.Node.EventType.TOUCH_CANCEL, this.touchEnd, this);
 
-        // var manager = cc.director.getCollisionManager();
-        // manager.enabled = true  //碰撞开始
-        // manager.enabledDebugDraw = true  //绘制碰撞框
 
     }
 
@@ -99,6 +96,9 @@ export default class NewClass extends cc.Component {
     time = 0
 
     update(dt) {
+        if(!isGameRun){
+            return
+        }
 
         this.bg1Move(this.backGroup1[0]);  //背景移动
         this.bg1Move(this.backGroup1[1]);
@@ -108,18 +108,6 @@ export default class NewClass extends cc.Component {
         this.bg3Move(this.backGroup3[1]);
     }
 
-    // onCollisionEnter (other) {
-    //     cc.log(1111111111)
-    //     this.node.color = cc.Color.RED;
-    // }
-    //
-    // onCollisionStay (other) {
-    //     console.log('on collision stay');
-    // }
-    //
-    // onCollisionExit () {
-    //     cc.log('碰撞离开')
-    // }
 
     bg1Move(bg: cc.Node) {
         // @ts-ignore
@@ -147,6 +135,9 @@ export default class NewClass extends cc.Component {
 
 
     touchStart() {  //滑行动作按下
+        if(!isGameRun){
+            return
+        }
         cc.log('按下滑铲')
         // @ts-ignore
         if (HeroAnim.currentClip.name != this.Run) {
@@ -157,6 +148,9 @@ export default class NewClass extends cc.Component {
     }
 
     touchEnd() {  //滑行动作放开
+        if(!isGameRun){
+            return
+        }
         cc.log('放开滑铲')
         if (HeroAnim.currentClip.name != this.Roll) {
             return
@@ -170,8 +164,12 @@ export default class NewClass extends cc.Component {
 
     jumpNum = 0;  // 用来做二段跳
     onJump() {
-
+        if(!isGameRun){
+            return
+        }
+        cc.log(downSpeed)
         if (HeroAnim.currentClip.name == this.Run) {  //第一跳
+            downSpeed = 0
             cc.log('跳第一次', HeroAnim.node.getPosition(v2()))
             HeroAnim.play(this.Jump);
             let actionTo = cc.jumpTo(1, HeroAnim.node.x, HeroAnim.node.y, 60, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
@@ -195,6 +193,8 @@ export default class NewClass extends cc.Component {
         if (HeroAnim.node.y < -48) {
             HeroAnim.play(this.Run);
             this.jumpNum = 0
+            downSpeed = 1
+
         }
     }
 

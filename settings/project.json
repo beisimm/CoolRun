@@ -9,10 +9,16 @@
   "collision-matrix": [
     [
       false,
+      true,
       true
     ],
     [
       true,
+      false
+    ],
+    [
+      true,
+      false,
       false
     ]
   ],
@@ -23,7 +29,8 @@
   "fit-width": false,
   "group-list": [
     "Hero",
-    "Floor"
+    "Floor",
+    "Die"
   ],
   "simulator-orientation": false,
   "simulator-resolution": {
