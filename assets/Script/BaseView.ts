@@ -57,24 +57,25 @@ export default class NewClass extends cc.Component {
     bgFloor: cc.Node = [];
 
     // LIFE-CYCLE CALLBACKS:
-    // @ts-ignore
-    Run = 'Run0' + SelectHeroID
-    // @ts-ignore
-    Jump = 'Jump0' + SelectHeroID
-    // @ts-ignore
-    Roll = 'Roll0' + SelectHeroID
+
 
     onLoad() {
         window.returnHall = this.returnHall
+        window.Run = 'Run0' + window.SelectHeroID
+        window.Jump = 'Jump0' +window.SelectHeroID
+        window.Roll = 'Roll0' + window.SelectHeroID
         // @ts-ignore
         for (let i = 0; i < this.HeroPrefabList.length; i++) {
             // @ts-ignore
             if (i == SelectHeroID) {  //根据选择英雄的ID来创建选择的对象
+                cc.log('当前选择的英雄是',SelectHeroID)
                 window.Hero = cc.instantiate(this.HeroPrefabList[i])
                 this.HeroSite.addChild(Hero)
                 // @ts-ignore
                 window.HeroAnim = Hero.getComponent(cc.Animation)  //获取角色动画
-                HeroAnim.play(this.Run)
+                cc.log(Run)
+                HeroAnim.play(Run)
+                cc.log(HeroAnim)
                 break
             }
         }
@@ -144,10 +145,10 @@ export default class NewClass extends cc.Component {
         }
         cc.log('按下滑铲')
         // @ts-ignore
-        if (HeroAnim.currentClip.name != this.Run) {
+        if (HeroAnim.currentClip.name != Run) {
             return
         }
-        HeroAnim.play(this.Roll);
+        HeroAnim.play(Roll);
         HeroAnim.node.setPosition(cc.v2(Hero.x, Hero.y - 8));
     }
 
@@ -156,11 +157,10 @@ export default class NewClass extends cc.Component {
             return
         }
         cc.log('放开滑铲')
-        if (HeroAnim.currentClip.name != this.Roll) {
+        if (HeroAnim.currentClip.name != Roll) {
             return
         }
-        HeroAnim.play(this.Run);
-        cc.log('touchEnd');
+        HeroAnim.play(Run);
         HeroAnim.node.setPosition(cc.v2(Hero.x, Hero.y + 12));
 
 
@@ -170,19 +170,16 @@ export default class NewClass extends cc.Component {
         if (!isGameRun) {
             return
         }
-        cc.log(HeroAnim.currentClip.name)
-        cc.log(this.Jump)
-        cc.log(jumpNum)
-        if (HeroAnim.currentClip.name == this.Run) {  //第一跳
+        if (HeroAnim.currentClip.name == Run) {  //第一跳
             jumpNum++
             downSpeed = 0
 
             cc.log('跳第一次', HeroAnim.node.getPosition(v2()))
-            HeroAnim.play(this.Jump);
+            HeroAnim.play(Jump);
             let actionTo = cc.jumpTo(1, HeroAnim.node.x, HeroAnim.node.y, 90, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
-            let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
-            let seq = cc.sequence(actionTo, callBack);
-            HeroAnim.node.runAction(seq);
+            // let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
+            // let seq = cc.sequence(actionTo, callBack);
+            HeroAnim.node.runAction(actionTo);
 
 
         } else if (HeroAnim.currentClip.name == this.Jump && jumpNum < 2) {
@@ -198,14 +195,6 @@ export default class NewClass extends cc.Component {
         }
     }
 
-    // callBackFunc() {  //落地
-        // if (HeroAnim.node.y < -48) {
-        //     // HeroAnim.play(this.Run);
-        // jumpNum = 0
-        // downSpeed = 1
-        //
-        // }
-    
 
     onRetrun() {
 

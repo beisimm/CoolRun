@@ -138,16 +138,6 @@
     "_id": ""
   },
   {
-    "__type__": "96159pdn/xJn7sS+gqj8/kX",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_id": ""
-  },
-  {
     "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
@@ -166,6 +156,16 @@
       "width": 25,
       "height": 5
     },
+    "_id": ""
+  },
+  {
+    "__type__": "96159pdn/xJn7sS+gqj8/kX",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
     "_id": ""
   },
   {
