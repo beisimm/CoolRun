@@ -11,7 +11,6 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {  //发生碰撞时
-        cc.log(HeroAnim.currentClip.name)
         if (self.tag == HeroTag && other.tag == DieTag) { //死亡碰撞
             cc.log('游戏结束')
             HeroAnim.stop()
@@ -27,6 +26,10 @@ cc.Class({
             HeroAnim.play(Run)  //这里独立出来是针对跳跃动作的
 
         }
+        if (self.tag == HeroTag && other.tag == Wall) {  //撞墙了
+            window.cllisionWall = true
+            cc.log(self.node.x)
+        }
 
     },
 
@@ -41,12 +44,15 @@ cc.Class({
         if (self.tag == HeroTag && other.tag == FloorTag) { //往下落
             downSpeed = 1
         }
+        if (self.tag == HeroTag && other.tag == Wall) {  //没有撞墙了
+            window.cllisionWall = false
+        }
     },
 
 
     update: function (dt) {
-
         window.Hero.y -= dt * 60 * downSpeed
+
 
     },
 });

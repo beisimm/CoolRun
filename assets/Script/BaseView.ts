@@ -181,8 +181,8 @@ export default class NewClass extends cc.Component {
             // let seq = cc.sequence(actionTo, callBack);
             HeroAnim.node.runAction(actionTo);
 
-
-        } else if (HeroAnim.currentClip.name == this.Jump && jumpNum < 2) {
+            
+        } else if (HeroAnim.currentClip.name == Jump && jumpNum < 2) {
             jumpNum++
             downSpeed = 0
 
