@@ -266,6 +266,7 @@ export default class NewClass extends cc.Component {
 
         }, 800);
         isGameRun = true
+        jumpNum = 0
     }
 
 

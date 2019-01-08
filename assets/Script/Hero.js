@@ -19,6 +19,8 @@ cc.Class({
         }
         if (self.tag == HeroTag && other.tag == FloorTag) { //地板碰撞
             self.node.stopAllActions()  //终止跳跃的动作
+            let actionInterval = cc.moveTo(1,cc.v2(-123,-52));
+            Hero.runAction(actionInterval)
             jumpNum = 0 //跳跃计数清零
             downSpeed = 0
         }

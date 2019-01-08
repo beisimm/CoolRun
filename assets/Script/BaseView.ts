@@ -167,6 +167,7 @@ export default class NewClass extends cc.Component {
     }
 
     onJump() {
+        cc.log('跳跃计数',jumpNum)
         if (!isGameRun) {
             return
         }
@@ -177,8 +178,6 @@ export default class NewClass extends cc.Component {
             cc.log('跳第一次', HeroAnim.node.getPosition(v2()))
             HeroAnim.play(Jump);
             let actionTo = cc.jumpTo(1, HeroAnim.node.x, HeroAnim.node.y, 90, 1);  //设置跳跃(持续时间,起跳位置, 起跳高度, 跳几次)
-            // let callBack = cc.callFunc(this.callBackFunc, this);  // 用于还原跑步动作
-            // let seq = cc.sequence(actionTo, callBack);
             HeroAnim.node.runAction(actionTo);
 
             
